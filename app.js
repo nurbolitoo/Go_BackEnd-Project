@@ -71,7 +71,7 @@ app.use('/landmarks', landmarkRoutes)
 app.use('/api', apiRoutes)
 app.use('/', mainRoutes)
 
-const port = process.env.PORT || 4000
+const port = process.env.PORT || 3000
 app.get('/', (req, res) => {
 	res.send('Hello World!')
 })
