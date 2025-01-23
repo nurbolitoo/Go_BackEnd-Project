@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+			rel="stylesheet"
+		/>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+		/>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+		<script src="quiz.js"></script>
+		<script src="matching.js"></script>
+		<link rel="stylesheet" href="quiz.css" />
+		<link rel="icon" href="uploads/favicon.png" type="image/ico" />
+		<title>Quiz</title>
+	</head>
+	<body>
+		<nav class="navbar fixed-top navbar-expand-lg bg-body-secondary">
+			<div class="container">
+				<a class="navbar-brand" href="/">History of Kazakhstan</a>
+				<button
+					class="navbar-toggler"
+					type="button"
+					data-bs-toggle="collapse"
+					data-bs-target="#navbarNav"
+				>
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div
+					class="collapse navbar-collapse justify-content-between"
+					id="navbarNav"
+				>
+					<ul class="navbar-nav">
+						<li class="nav-item">
+							<a class="nav-link" href="/">home</a>
+						</li>
+						<li class="nav-item dropdown">
+							<a
+								class="nav-link dropdown-toggle"
+								href=""
+								data-bs-toggle="dropdown"
+								>content</a
+							>
+							<ul class="dropdown-menu">
+								<li>
+									<a class="dropdown-item" href="/kazakhKhanate"
+										>Kazakh Khanate</a
+									>
+								</li>
+								<li><hr class="dropdown-divider" /></li>
+								<li>
+									<a class="dropdown-item" href="/inRussianEmpire"
+										>In Russian Empire</a
+									>
+								</li>
+								<li><hr class="dropdown-divider" /></li>
+								<li>
+									<a class="dropdown-item" href="/partOfUSSR"
+										>The Part of USSR</a
+									>
+								</li>
+							</ul>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link active" href="/quiz">quiz</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#contact">contacts</a>
+						</li>
+					</ul>
+					<ul class="navbar-nav">
+						<li class="nav-item">
+							<a
+								class="nav-link"
+								data-bs-toggle="modal"
+								data-bs-target="#loginModal"
+								href="#"
+								>Login</a
+							>
+						</li>
+						<li class="nav-item">
+							<a
+								class="nav-link"
+								data-bs-toggle="modal"
+								data-bs-target="#registerModal"
+								href="#"
+								>Registration</a
+							>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+		<div class="modal fade" id="loginModal">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title">Login</h4>
+						<button
+							type="button"
+							class="btn-close"
+							data-bs-dismiss="modal"
+						></button>
+					</div>
+					<form>
+						<div class="modal-body">
+							<div class="form-floating mb-3 mt-3">
+								<input
+									type="text"
+									class="form-control"
+									id="email"
+									placeholder="Enter email"
+									name="email"
+								/>
+								<label for="email">Email</label>
+							</div>
+							<div class="form-floating mt-3 mb-3">
+								<input
+									type="text"
+									class="form-control"
+									id="pwd"
+									placeholder="Enter password"
+									name="pswd"
+								/>
+								<label for="pwd">Password</label>
+							</div>
+						</div>
+
+						<div class="d-flex modal-footer justify-content-between">
+							<input
+								type="submit"
+								class="form-control text-bg-primary"
+								value="login"
+								style="width: 80px"
+							/>
+							<button
+								type="button"
+								class="btn btn-danger"
+								data-bs-dismiss="modal"
+							>
+								Close
+							</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="modal fade" id="registerModal">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title">Registration</h4>
+						<button
+							type="button"
+							class="btn-close"
+							data-bs-dismiss="modal"
+						></button>
+					</div>
+					<form>
+						<div class="modal-body">
+							<div class="input-group mb-3">
+								<span class="input-group-text">Person</span>
+								<input
+									type="text"
+									class="form-control"
+									placeholder="First Name"
+								/>
+								<input
+									type="text"
+									class="form-control"
+									placeholder="Last Name"
+								/>
+							</div>
+							<div class="input-group mb-3">
+								<span class="input-group-text">@</span>
+								<input
+									type="text"
+									class="form-control"
+									placeholder="Username"
+								/>
+							</div>
+							<div class="form-floating mb-3 mt-3">
+								<input
+									type="text"
+									class="form-control"
+									id="email"
+									placeholder="Enter email"
+									name="email"
+								/>
+								<label for="email">Email</label>
+							</div>
+							<div class="form-floating mt-3 mb-3">
+								<input
+									type="text"
+									class="form-control"
+									id="pwd"
+									placeholder="Enter password"
+									name="pswd"
+								/>
+								<label for="pwd">Password</label>
+							</div>
+						</div>
+
+						<div class="d-flex modal-footer justify-content-between">
+							<input
+								type="submit"
+								class="form-control text-bg-primary"
+								value="login"
+								style="width: 80px"
+							/>
+							<button
+								type="button"
+								class="btn btn-danger"
+								data-bs-dismiss="modal"
+							>
+								Close
+							</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<section class="container">
+			<div style="width: 100%; margin-bottom: 100px; text-align: center">
+				<h2>Quiz</h2>
+			</div>
+			<div class="questionbar">
+				<h4>Question 1</h4>
+				<p>What countries does Kazakhstan border with? (choose 5)</p>
+				<label
+					><input
+						class="form-check-input m-2"
+						type="checkbox"
+						name="q1"
+						value="russia"
+					/>Russia</label
+				><br />
+				<label
+					><input
+						class="form-check-input m-2"
+						type="checkbox"
+						name="q1"
+						value="mongolia"
+					/>Mongolia</label
+				><br />
+				<label
+					><input
+						class="form-check-input m-2"
+						type="checkbox"
+						name="q1"
+						value="china"
+					/>China</label
+				><br />
+				<label
+					><input
+						class="form-check-input m-2"
+						type="checkbox"
+						name="q1"
+						value="kyrgyzstan"
+					/>Kyrgyzstan</label
+				><br />
+				<label
+					><input
+						class="form-check-input m-2"
+						type="checkbox"
+						name="q1"
+						value="türkiye"
+					/>Türkiye</label
+				><br />
+				<label
+					><input
+						class="form-check-input m-2"
+						type="checkbox"
+						name="q1"
+						value="tajikistan"
+					/>Tajikistan</label
+				><br />
+				<label
+					><input
+						class="form-check-input m-2"
+						type="checkbox"
+						name="q1"
+						value="turkmenistan"
+					/>Turkmenistan</label
+				><br />
+				<label
+					><input
+						class="form-check-input m-2"
+						type="checkbox"
+						name="q1"
+						value="uzbekistan"
+					/>Uzbekistan</label
+				><br />
+			</div>
+			<div class="questionbar" style="position: relative">
+				<h4>Question 2</h4>
+				<p>Match cards</p>
+				<div class="d-flex justify-content-center">
+					<div>
+						<div class="myItem">Kazakh Khanate</div>
+						<div class="myItem">In Russian Empire</div>
+						<div class="myItem">The Part of USSR</div>
+					</div>
+					<div style="margin-left: 20px">
+						<div class="myBox">
+							<p>1465 - 1847 years</p>
+							<div class="empty"></div>
+						</div>
+						<div class="myBox">
+							<p>1847 - 1922 years</p>
+							<div class="empty"></div>
+						</div>
+						<div class="myBox">
+							<p>1922 - 1991 years</p>
+							<div class="empty"></div>
+						</div>
+					</div>
+				</div>
+				<input type="hidden" id="q2" />
+			</div>
+			<div class="questionbar">
+				<h4>Question 3</h4>
+				<p>Who established Kazakh Khanate?</p>
+				<label
+					><input
+						class="form-check-input m-2"
+						type="radio"
+						name="q3"
+						value="Janibek Khan and Kerei Khan"
+					/>Janibek Khan and Kerei Khan</label
+				><br />
+				<label
+					><input
+						class="form-check-input m-2"
+						type="radio"
+						name="q3"
+						value="Abu’l-Khayr"
+					/>Abu’l-Khayr</label
+				><br />
+				<label
+					><input
+						class="form-check-input m-2"
+						type="radio"
+						name="q3"
+						value="Jochi Khan"
+					/>Jochi Khan</label
+				><br />
+				<label
+					><input
+						class="form-check-input m-2"
+						type="radio"
+						name="q3"
+						value="Kenesary Khan"
+					/>Kenesary Khan</label
+				><br />
+			</div>
+			<div class="questionbar">
+				<h4>Question 4</h4>
+				<p>
+					How much did the Kazakh population grow during the reign of Kasym
+					Khan?
+				</p>
+				<label
+					><input
+						class="form-check-input m-2"
+						type="radio"
+						name="q4"
+						value="1.000.000"
+					/>1.000.000</label
+				><br />
+				<label
+					><input
+						class="form-check-input m-2"
+						type="radio"
+						name="q4"
+						value="2.300.000"
+					/>2.300.000</label
+				><br />
+				<label
+					><input
+						class="form-check-input m-2"
+						type="radio"
+						name="q4"
+						value="700.000"
+					/>700.000</label
+				><br />
+				<label
+					><input
+						class="form-check-input m-2"
+						type="radio"
+						name="q4"
+						value="1.500.000"
+					/>1.500.000</label
+				><br />
+			</div>
+			<div class="questionbar">
+				<h4>Question 5</h4>
+				<p>Which Juz was the first to join the Russian Empire?</p>
+				<select class="form-select" id="q5">
+					<option selected>Choose...</option>
+					<option value="Junior Juz">Junior Juz</option>
+					<option value="Middle Juz">Middle Juz</option>
+					<option value="Senior Juz">Senior Juz</option>
+				</select>
+			</div>
+			<div class="questionbar">
+				<h4>Question 6</h4>
+				<p>When did Russian Empire officially abolish the Kazakh Khanate?</p>
+				<div class="input-group mb-3">
+					<input type="text" class="form-control" id="q6" />
+					<span class="input-group-text">years</span>
+				</div>
+			</div>
+			<div class="questionbar">
+				<h4>Question 7</h4>
+				<p>
+					Which of the following events corresponds to the statement "This
+					period of openness and reform contributed to the rise of nationalist
+					movements in Soviet republics, including Kazakhstan. On December 16,
+					1991, Kazakhstan declared its independence following the dissolution
+					of the Soviet Union."
+				</p>
+				<label
+					><input
+						class="form-check-input m-2"
+						type="radio"
+						name="q7"
+						value="Ethnic and Cultural Changes"
+					/>Ethnic and Cultural Changes</label
+				><br />
+				<label
+					><input
+						class="form-check-input m-2"
+						type="radio"
+						name="q7"
+						value="Nuclear Testing"
+					/>Nuclear Testing</label
+				><br />
+				<label
+					><input
+						class="form-check-input m-2"
+						type="radio"
+						name="q7"
+						value="World War II"
+					/>World War II</label
+				><br />
+				<label
+					><input
+						class="form-check-input m-2"
+						type="radio"
+						name="q7"
+						value="Perestroika and Independence"
+					/>Perestroika and Independence</label
+				><br />
+			</div>
+			<div class="container d-flex justify-content-center">
+				<input
+					type="button"
+					value="Check"
+					class="btn btn-outline-primary w-50 fs-4"
+					id="btn"
+				/>
+			</div>
+			<div class="container d-flex justify-content-between mt-5">
+				<a href="partOfUSSR" class="btn btn-outline-primary"
+					><i class="fa fa-solid fa-arrow-left"></i> previous</a
+				>
+				<h4>total: <span class="badge bg-primary fs-4" id="total"></span></h4>
+			</div>
+		</section>
+		<footer class="bg-body-secondary pt-5 pb-5" id="contact">
+			<div class="container">
+				<div class="row">
+					<ul class="col-lg-4 nav flex-column">
+						<li class="nav-item">
+							<a href="index.html" class="nav-link">Home</a>
+						</li>
+						<li class="nav-item">
+							<a href="kazakhKhanate.html" class="nav-link">Kazakh Khanate</a>
+						</li>
+						<li class="nav-item">
+							<a href="inRussianEmpire.html" class="nav-link active"
+								>In Russian Empire</a
+							>
+						</li>
+						<li class="nav-item">
+							<a href="partOfUSSR.html" class="nav-link">The Part of USSR</a>
+						</li>
+						<li class="nav-item">
+							<a href="quiz.html" class="nav-link">Quiz</a>
+						</li>
+					</ul>
+					<div class="col-lg-2 flex-column"></div>
+					<div class="col-lg-6 flex-column">
+						<a href="#" class="fa fa-facebook fa-lg"></a>
+						<a href="#" class="fa fa-twitter fa-lg"></a>
+						<a href="#" class="fa fa-instagram fa-lg"></a>
+						<a href="#" class="fa fa-reddit fa-lg"></a>
+						<h3 class="mt-5">References:</h3>
+						<ul>
+							<li>
+								<a href="https://en.wikipedia.org/wiki/Kazakhstan"
+									>https://en.wikipedia.org/wiki/Kazakhstan</a
+								>
+							</li>
+							<li>
+								<a href="https://aboutkazakhstan.com/about-kazakhstan-history"
+									>https://aboutkazakhstan.com/about-kazakhstan-history</a
+								>
+							</li>
+							<li>
+								<a href="https://invest.gov.kz/ru/about-kazakhstan/info/"
+									>https://invest.gov.kz/ru/about-kazakhstan/info/</a
+								>
+							</li>
+							<li>
+								<a href="https://en.wikipedia.org/wiki/Kazakh_Khanate"
+									>https://en.wikipedia.org/wiki/Kazakh_Khanate</a
+								>
+							</li>
+							<li>
+								<a
+									href="https://en.wikipedia.org/wiki/Kazakhstan_in_the_Russian_Empire"
+									>https://en.wikipedia.org/wiki/Kazakhstan_in_the_Russian_Empire</a
+								>
+							</li>
+							<li>
+								<a
+									href="https://en.wikipedia.org/wiki/Kazakh_Soviet_Socialist_Republic"
+									>https://en.wikipedia.org/wiki/Kazakh_Soviet_Socialist_Republic</a
+								>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</footer>
+	</body>
+</html>
