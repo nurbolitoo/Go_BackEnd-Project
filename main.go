@@ -7,6 +7,7 @@ import (
 	"io"
 	"log"
 	"net/http"
+	"os"
 
 	"github.com/rs/cors"
 	"go.mongodb.org/mongo-driver/bson"
@@ -19,36 +20,41 @@ var client *mongo.Client
 
 func main() {
 	var err error
+
+	// MongoDB URI
 	mongoURI := "mongodb+srv://nurlybaynurbol:987412365nn@cluster0.436nq.mongodb.net/?retryWrites=true&w=majority"
 
-	client, err = mongo.NewClient(options.Client().ApplyURI(mongoURI))
-	if err != nil {
-		log.Fatal("Error creating MongoDB client:", err)
-	}
-
-	err = client.Connect(context.Background())
+	// Подключение к MongoDB
+	client, err = mongo.Connect(context.Background(), options.Client().ApplyURI(mongoURI))
 	if err != nil {
 		log.Fatal("Error connecting to MongoDB:", err)
 	}
-	defer client.Disconnect(context.Background())
 
 	fmt.Println("MongoDB connection established")
 
+	// Регистрация маршрутов
 	http.HandleFunc("/users", getUsers)
+	http.HandleFunc("/send-email", sendEmailHandler)
+	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		fmt.Fprintln(w, "Hello World!")
+	})
 
-	// Enable CORS
+	// Включение CORS
 	c := cors.New(cors.Options{
-		AllowedOrigins:   []string{"http://localhost:3000"}, // Allow your frontend's origin
+		AllowedOrigins:   []string{"http://localhost:3000"}, // Разрешите нужные домены
 		AllowCredentials: true,
 		AllowedMethods:   []string{"GET", "POST", "PUT", "DELETE"},
 		AllowedHeaders:   []string{"Content-Type", "Authorization"},
 	})
 
+	// Обёртка обработчиков через CORS
 	handler := c.Handler(http.DefaultServeMux)
-	http.HandleFunc("/send-email", sendEmailHandler)
 
-	fmt.Println("Server started at :8080")
-	log.Fatal(http.ListenAndServe(":8080", handler))
+	port := "8080"
+
+	// Запуск сервера
+	fmt.Printf("Server started at :%s\n", port)
+	log.Fatal(http.ListenAndServe(":"+port, handler))
 }
 
 func getUsers(w http.ResponseWriter, r *http.Request) {
@@ -160,8 +166,11 @@ func sendEmailHandler(w http.ResponseWriter, r *http.Request) {
 		}))
 	}
 
-	// Send email
-	d := gomail.NewDialer("smtp.gmail.com", 587, "nurlybaynurbol@gmail.com", "rdhk amua afhc mivw")
+	// Get email credentials from environment variables
+	email := os.Getenv("EMAIL")
+	password := os.Getenv("EMAIL_PASSWORD")
+
+	d := gomail.NewDialer("smtp.gmail.com", 587, email, password)
 
 	if err := d.DialAndSend(m); err != nil {
 		http.Error(w, "Failed to send email", http.StatusInternalServerError)
