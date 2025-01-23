@@ -71,6 +71,11 @@ app.use('/landmarks', landmarkRoutes)
 app.use('/api', apiRoutes)
 app.use('/', mainRoutes)
 
-app.listen(3000, () => {
-	console.log(`Server is running on port 3000`)
+const port = process.env.PORT || 4000
+app.get('/', (req, res) => {
+	res.send('Hello World!')
+})
+
+app.listen(port, () => {
+	console.log(`Example app listening on port ${port}`)
 })
